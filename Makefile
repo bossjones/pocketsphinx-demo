@@ -103,3 +103,6 @@ run-livedemo:
 
 run-consoledemo:
 	python examples/consoledemo.py
+
+update-corpus:
+	python contrib/scripts/lmtool-cli

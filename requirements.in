@@ -30,3 +30,4 @@ matplotlib
 numpy_ringbuffer
 MonkeyType
 pipdeptree
+requests

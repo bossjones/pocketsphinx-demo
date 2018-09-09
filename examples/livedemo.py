@@ -34,7 +34,7 @@ class DemoApp(object):
         self.init_gst()
 
     def init_gui(self):
-        """Initialize the GUI components"""
+        """Initialize the GUI components."""
         self.window = Gtk.Window()
         self.window.connect("delete-event", Gtk.main_quit)
         self.window.set_default_size(400, 200)
@@ -48,6 +48,7 @@ class DemoApp(object):
         self.button.connect("clicked", self.button_clicked)
         vbox.pack_start(self.button, False, False, 5)
         self.window.add(vbox)
+        # Recursively shows a widget, and any child widgets (if the widget is a container).
         self.window.show_all()
 
     def init_gst(self):
@@ -58,6 +59,47 @@ class DemoApp(object):
         bus = self.pipeline.get_bus()
         bus.add_signal_watch()
         bus.connect("message::element", self.element_message)
+
+        # bus.connect(
+        #     "message::eos", self._on_message
+        # )
+        # bus.connect(
+        #     "message::error", self._on_message
+        # )
+        # bus.connect(
+        #     "message::state-changed", self._on_state_changed
+        # )
+
+        # # ************************************************************
+        # # get gst pipeline element pocketsphinx and set properties - BEGIN
+        # # ************************************************************
+        # pocketsphinx = pipeline.get_by_name("asr")
+        # # from scarlett_os.internal.debugger import dump
+        # # print("debug-2018-pocketsphinx - BEGIN")
+        # # dump(pocketsphinx.get_property('decoder'))
+        # # print("debug-2018-pocketsphinx - END")
+        # # print(pocketsphinx.list_properties())
+        # if self._hmm:
+        #     pocketsphinx.set_property("hmm", self._hmm)
+        # if self._lm:
+        #     pocketsphinx.set_property("lm", self._lm)
+        # if self._dic:
+        #     pocketsphinx.set_property("dict", self._dic)
+
+        # if self._fwdflat:
+        #     pocketsphinx.set_property("fwdflat", self._fwdflat)
+
+        # if self._bestpath:
+        #     pocketsphinx.set_property("bestpath", self._bestpath)
+
+        # if self._dsratio:
+        #     pocketsphinx.set_property("dsratio", self._dsratio)
+
+        # if self._maxhmmpf:
+        #     pocketsphinx.set_property("maxhmmpf", self._maxhmmpf)
+
+        # if self._bestpath:
+        #     pocketsphinx.set_property("bestpath", self._bestpath)
 
         self.pipeline.set_state(Gst.State.PAUSED)
 
