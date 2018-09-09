@@ -124,4 +124,22 @@ https://sourceforge.net/projects/cmusphinx/files/Acoustic%20and%20Language%20Mod
 - [GTK+ 3 Reference Manual](https://developer.gnome.org/gtk3/stable/)
 
 
-# Important terms
+# Important terms in speech recognition
+
+`confidence`: The probability that the result returned by the speech engine matches what a speaker said. Speech engines generally return confidence scores that reflect the probability; the higher the score, the more likely the engine's result is correct.
+
+`dictionary`: A large set of data used by a speech engine while doing speech recognition that defines the phonemes in a language or dialect.
+
+`directed dialogue`: An approach to speech application design that prompts users to say specific phrases. Contrast with natural language.
+
+`grammar`: A file that contains a list of words and phrases to be recognized by a speech application. Grammars may also contain bits of programming logic to aid the application. All of the active grammar words make up the vocabulary. See also ABNF, SRGS, and grXML.
+
+`natural langauge`: An approach to speech application design that encourages users to speak naturally to the system. Contrast with directed dialogue.
+
+`phoneme`: The basic unit of sound. In the same way that written words are composed of letters, a spoken word is composed of various phonemes, though they may not line up precisely. For instance, the English word "food" has three phonemes (the "f" sound, the "oo" sound, and the "d" sound) but four letters. A speech engine uses its dictionary to break up vocabulary words and utterances into phonemes, and compares them to one another to perform speech recognition.
+
+`utterance`: Spoken input from the user of a speech application. An utterance may be a single word, an entire phrase, a sentence, or even several sentences.
+
+`vocabulary`: The total list of words the speech engine will be comparing an utterance against. The vocabulary is made up of all the words in all active grammars.
+
+`voice recognition`: A form of biometrics that identifies users by recognizing their unique voices. Though it is often used interchangeably with speech recognition, the two are different. Voice recognition is concerned with recognizing voices, while speech recognition is concerned with recognizing the content of speech.
