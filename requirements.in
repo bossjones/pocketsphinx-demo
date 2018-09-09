@@ -1,0 +1,32 @@
+autopep8
+black
+pdbpp
+ptpython
+pylint
+
+# Yaml 1.2 spec
+ruamel.yaml
+
+
+# There also is a commandline utility yaml available after installing:
+ruamel.yaml.cmd
+colorlog
+Click
+click-plugins
+
+# profiling ( instagram suggestion )
+# SOURCE: https://www.youtube.com/watch?v=ACgMTqX5Ee4
+pygraphviz
+
+
+pygobject==3.28.3
+ptpython
+black
+isort
+ipython
+pdbpp
+Pillow
+matplotlib
+numpy_ringbuffer
+MonkeyType
+pipdeptree
