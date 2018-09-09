@@ -101,7 +101,7 @@ Now you're ready to run the demo!
 `make run-livedemo`
 
 Screen Should look like this:
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Screenshot of livedemo")
+![alt text](https://github.com/bossjones/pocketsphinx-demo/blob/master/images/livedemo.png?raw=true "Screenshot of livedemo")
 
 
 # Language Models
