@@ -33,10 +33,13 @@ class DemoApp(object):
         self.init_gui()
         self.init_gst()
 
+    # NOTE: Also see https://github.com/crearo/gstreamer-cookbook/blob/master/Python/simple-media-player.py
     def init_gui(self):
         """Initialize the GUI components."""
         self.window = Gtk.Window()
         self.window.connect("delete-event", Gtk.main_quit)
+        # give the window a name
+        self.window.set_title("LiveDemoPocketsphinxGTK")
         self.window.set_default_size(400, 200)
         self.window.set_border_width(10)
         vbox = Gtk.VBox()
@@ -148,6 +151,43 @@ class DemoApp(object):
             button.set_label("Speak")
             self.pipeline.set_state(Gst.State.PAUSED)
 
+# SOURCE: https://github.com/ajbogh/blather/blob/30c201821499fcc76a5dcfec475567df2ad78873/Recognizer.py
+# class Recognizer(gobject.GObject):
+# 	__gsignals__ = {
+# 		'finished': (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, (gobject.TYPE_STRING,))
+# 	}
+
+# 	def __init__(self, language_file, dictionary_file, src=None):
+# 		gobject.GObject.__init__(self)
+# 		self.commands = {}
+# 		if src:
+# 			audio_src = 'alsasrc device="hw:%d,0"' % (src)
+# 		else:
+# 			audio_src = 'autoaudiosrc'
+
+# 		#build the pipeline
+# 		cmd = audio_src + ' ! audioconvert ! audioresample ! vader name=vad ! pocketsphinx name=asr ! appsink sync=false'
+# 		self.pipeline = gst.parse_launch(cmd)
+# 		#get the Auto Speech Recognition piece
+# 		asr = self.pipeline.get_by_name('asr')
+# 		asr.connect('result', self.result)
+# 		asr.set_property('lm', language_file)
+# 		asr.set_property('dict', dictionary_file)
+# 		asr.set_property('configured', True)
+# 		#get the Voice Activity DEtectoR
+# 		self.vad = self.pipeline.get_by_name('vad')
+# 		self.vad.set_property('auto-threshold', True)
+
+# 	def listen(self):
+# 		self.pipeline.set_state(gst.STATE_PLAYING)
+
+# 	def pause(self):
+# 		self.vad.set_property('silent', True)
+# 		self.pipeline.set_state(gst.STATE_PAUSED)
+
+# 	def result(self, asr, text, uttid):
+# 		#emit finished
+# 		self.emit("finished", text)
 
 app = DemoApp()
 Gtk.main()
