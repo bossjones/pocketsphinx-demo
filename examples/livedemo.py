@@ -8,7 +8,9 @@
 # You may modify and redistribute this file under the same terms as
 # the CMU Sphinx system. See LICENSE for more information.
 
+import os
 import gi
+import sys
 
 gi.require_version("GLib", "2.0")
 gi.require_version("Gtk", "3.0")
@@ -17,21 +19,34 @@ from gi.repository import GObject
 from gi.repository import Gst
 from gi.repository import Gtk
 
-GObject.threads_init()
-Gst.init(None)
-
-gst = Gst
-
-print("Using pygtkcompat and Gst from gi")
-
-
 class DemoApp(object):
     """GStreamer/PocketSphinx Demo Application"""
 
     def __init__(self):
         """Initialize a DemoApp object"""
+        self.init_ps()
         self.init_gui()
         self.init_gst()
+
+    def init_ps(self):
+        # self._here = os.path.dirname(__file__)
+        # self._directory = os.path.join(directory, "json")
+        # self._example = os.path.join(directory, example_filename)
+
+        self._dic = os.environ.get("PS_DIC")
+        self._lm = os.environ.get("PS_LM")
+        # Silence word transition probability
+        self._silprob = 0.1
+        # Word insertion penalty
+        self._wip = 1e-4
+        # Enable Graph Search | Boolean. Default: true
+        self._bestpath = True
+        # Enable Flat Lexicon Search | Default = true
+        self._fwdflat = True
+        # Evaluate acoustic model every N frames |  Integer. Range = 1 - 10 Default = 1
+        self._dsratio = 1
+        # Maximum number of HMMs searched per frame | Integer. Range = 1 - 100000 Default = 30000
+        self._maxhmmpf = 3000
 
     # NOTE: Also see https://github.com/crearo/gstreamer-cookbook/blob/master/Python/simple-media-player.py
     def init_gui(self):
@@ -57,7 +72,7 @@ class DemoApp(object):
     def init_gst(self):
         """Initialize the speech components"""
         self.pipeline = Gst.parse_launch(
-            "autoaudiosrc ! audioconvert ! audioresample " + "! pocketsphinx ! fakesink"
+            "autoaudiosrc ! audioconvert ! audioresample " + "! pocketsphinx name=asr ! fakesink"
         )
         bus = self.pipeline.get_bus()
         bus.add_signal_watch()
@@ -76,33 +91,27 @@ class DemoApp(object):
         # # ************************************************************
         # # get gst pipeline element pocketsphinx and set properties - BEGIN
         # # ************************************************************
-        # pocketsphinx = pipeline.get_by_name("asr")
-        # # from scarlett_os.internal.debugger import dump
-        # # print("debug-2018-pocketsphinx - BEGIN")
-        # # dump(pocketsphinx.get_property('decoder'))
-        # # print("debug-2018-pocketsphinx - END")
-        # # print(pocketsphinx.list_properties())
-        # if self._hmm:
-        #     pocketsphinx.set_property("hmm", self._hmm)
-        # if self._lm:
-        #     pocketsphinx.set_property("lm", self._lm)
-        # if self._dic:
-        #     pocketsphinx.set_property("dict", self._dic)
+        pocketsphinx = self.pipeline.get_by_name("asr")
+        if self._lm:
+            pocketsphinx.set_property("lm", self._lm)
 
-        # if self._fwdflat:
-        #     pocketsphinx.set_property("fwdflat", self._fwdflat)
+        if self._dic:
+            pocketsphinx.set_property("dict", self._dic)
 
-        # if self._bestpath:
-        #     pocketsphinx.set_property("bestpath", self._bestpath)
+        if self._fwdflat:
+            pocketsphinx.set_property("fwdflat", self._fwdflat)
 
-        # if self._dsratio:
-        #     pocketsphinx.set_property("dsratio", self._dsratio)
+        if self._bestpath:
+            pocketsphinx.set_property("bestpath", self._bestpath)
 
-        # if self._maxhmmpf:
-        #     pocketsphinx.set_property("maxhmmpf", self._maxhmmpf)
+        if self._dsratio:
+            pocketsphinx.set_property("dsratio", self._dsratio)
 
-        # if self._bestpath:
-        #     pocketsphinx.set_property("bestpath", self._bestpath)
+        if self._maxhmmpf:
+            pocketsphinx.set_property("maxhmmpf", self._maxhmmpf)
+
+        if self._bestpath:
+            pocketsphinx.set_property("bestpath", self._bestpath)
 
         self.pipeline.set_state(Gst.State.PAUSED)
 
@@ -189,5 +198,17 @@ class DemoApp(object):
 # 		#emit finished
 # 		self.emit("finished", text)
 
-app = DemoApp()
-Gtk.main()
+def main(args):
+    # GObject.threads_init()
+    Gst.init(None)
+
+    gst = Gst
+
+    print("Using pygtkcompat and Gst from gi")
+    app = DemoApp()
+    print(app)
+    Gtk.main()
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))
