@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Note this has been modified since its original source.
+# Note this has been modified since its original source by Malcolm Jones
 
 # SOURCE:
 # Copyright (c) 2008 Carnegie Mellon University.
@@ -29,10 +29,6 @@ class DemoApp(object):
         self.init_gst()
 
     def init_ps(self):
-        # self._here = os.path.dirname(__file__)
-        # self._directory = os.path.join(directory, "json")
-        # self._example = os.path.join(directory, example_filename)
-
         self._dic = os.environ.get("PS_DIC")
         self._lm = os.environ.get("PS_LM")
         # Silence word transition probability
