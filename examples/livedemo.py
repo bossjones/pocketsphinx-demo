@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# Note this has been modified since its original source.
+
+# SOURCE:
 # Copyright (c) 2008 Carnegie Mellon University.
 #
 # You may modify and redistribute this file under the same terms as
@@ -9,10 +12,11 @@ import gi
 
 gi.require_version("GLib", "2.0")
 gi.require_version("Gtk", "3.0")
-gi.require_version('Gst', '1.0')
+gi.require_version("Gst", "1.0")
 from gi.repository import GObject
 from gi.repository import Gst
 from gi.repository import Gtk
+
 GObject.threads_init()
 Gst.init(None)
 
@@ -20,8 +24,10 @@ gst = Gst
 
 print("Using pygtkcompat and Gst from gi")
 
+
 class DemoApp(object):
     """GStreamer/PocketSphinx Demo Application"""
+
     def __init__(self):
         """Initialize a DemoApp object"""
         self.init_gui()
@@ -31,7 +37,7 @@ class DemoApp(object):
         """Initialize the GUI components"""
         self.window = Gtk.Window()
         self.window.connect("delete-event", Gtk.main_quit)
-        self.window.set_default_size(400,200)
+        self.window.set_default_size(400, 200)
         self.window.set_border_width(10)
         vbox = Gtk.VBox()
         self.textbuf = Gtk.TextBuffer()
@@ -39,33 +45,37 @@ class DemoApp(object):
         self.text.set_wrap_mode(Gtk.WrapMode.WORD)
         vbox.pack_start(self.text, True, True, 0)
         self.button = Gtk.ToggleButton("Speak")
-        self.button.connect('clicked', self.button_clicked)
+        self.button.connect("clicked", self.button_clicked)
         vbox.pack_start(self.button, False, False, 5)
         self.window.add(vbox)
         self.window.show_all()
 
     def init_gst(self):
         """Initialize the speech components"""
-        self.pipeline = Gst.parse_launch('autoaudiosrc ! audioconvert ! audioresample '
-                                         + '! pocketsphinx ! fakesink')
+        self.pipeline = Gst.parse_launch(
+            "autoaudiosrc ! audioconvert ! audioresample " + "! pocketsphinx ! fakesink"
+        )
         bus = self.pipeline.get_bus()
         bus.add_signal_watch()
-        bus.connect('message::element', self.element_message)
+        bus.connect("message::element", self.element_message)
 
         self.pipeline.set_state(Gst.State.PAUSED)
 
     def element_message(self, bus, msg):
         """Receive element messages from the bus."""
         msgtype = msg.get_structure().get_name()
-        if msgtype != 'pocketsphinx':
+        if msgtype != "pocketsphinx":
             return
 
-        if msg.get_structure().get_value('final'):
-            self.final_result(msg.get_structure().get_value('hypothesis'), msg.get_structure().get_value('confidence'))
+        if msg.get_structure().get_value("final"):
+            self.final_result(
+                msg.get_structure().get_value("hypothesis"),
+                msg.get_structure().get_value("confidence"),
+            )
             self.pipeline.set_state(Gst.State.PAUSED)
             self.button.set_active(False)
-        elif msg.get_structure().get_value('hypothesis'):
-            self.partial_result(msg.get_structure().get_value('hypothesis'))
+        elif msg.get_structure().get_value("hypothesis"):
+            self.partial_result(msg.get_structure().get_value("hypothesis"))
 
     def partial_result(self, hyp):
         """Delete any previous selection, insert text and select it."""
@@ -95,6 +105,7 @@ class DemoApp(object):
         else:
             button.set_label("Speak")
             self.pipeline.set_state(Gst.State.PAUSED)
+
 
 app = DemoApp()
 Gtk.main()
