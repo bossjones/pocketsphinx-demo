@@ -150,3 +150,23 @@ Taken directly from: https://medium.com/@joshdotai/16-voice-control-terms-you-ne
 |Markov Models |Rooted in probability theory, a Markov Model uses randomly changing systems to forecast future states. A great example is the predictive text you’ve probably seen in your iPhone. If you type “I love,” the system can predict the next word to be “you” based on probability. There are 4 types of Markov models, including hidden and Markov chains. If you’re interested in learning more, we suggest the Clemson University Intro to Markov Models. Markov Models are very important in speech recognition because it’s similar to how humans process text. The sentences “make the lights red” and “make the lights read” are pronounced the same, but understanding the probability helps assure accurate speech recognition.|
 |Wake Word |When you say “Alexa” or “Hey Google,” you’re activating a wake word, also known as a hot word or key word. Typically wake word detection runs on the local device, which is why “always listening” devices need direct power and can’t be battery operated. Once the wake word is heard, the voice assistant is activated and speech is typically processed in the cloud. Wake words need to be fine-tuned in order to work un-trained with most users, which is why it’s tough to arbitrarily choose a wake word and expect it to work well. That said, when you do train a wake word, hard stop sounds like “k” in “okay” or “x” in “Alexa”, as well as multiple syllables, help increase the reliability.|
 | Statistical Language Model (LM) | Statistical language models describe more complex language. They contain probabilities of the words and word combinations. Those probabilities are estimated from sample data and automatically have some flexibility. Every combination from the vocabulary is possible, although the probability of each combination will vary. For example, if you create a statistical language model from a list of words it will still allow to decode word combinations even though this might not have been your intent. [see more on cmusphinx](https://cmusphinx.github.io/wiki/tutoriallm/)|
+
+# Common Problems
+
+   NOTE: Always check https://cmusphinx.github.io/wiki/tutorialtuning/ for the latest on pocketsphinx and FAQs.
+
+### Reasons for bad accuracy
+
+The top reasons for a bad accuracy are:
+
+- The mismatch of the sample rate and the number of channels of the incoming audio or the mismatch of the incoming audio bandwidth. It must be a 16 kHz (or 8 kHz, depending on the training data), 16bit Mono (= single channel) Little-Endian file. You need to fix the sample rate of the source with resampling (only if its rate is higher than that of the training data). You should not upsample a file and decode it with acoustic models trained on audio with a higher sampling rate. The audio file format (sampling rate, number of channels) can be verified using the command
+
+    `sox --i /path/to/audio/file`
+
+    Find more information here: [What is sample rate?](https://cmusphinx.github.io/wiki/faq/#q-what-is-sample-rate-and-how-does-it-affect-accuracy)
+
+- The mismatch of the acoustic model. To verify this hypothesis you need to construct a language model from the test database text. Such a language model will be very good and must give you a high accuracy. If accuracy is still low, you need to work more on the acoustic model. You can use acoustic model adaptation to improve accuracy.
+
+- The mismatch of the langauge model. You can create your own language model to match the vocabulary you are trying to decode.
+
+- The mismatch in the dictionary and the pronuncation of the words. In that case some work must be done in the phonetic dictionary.
