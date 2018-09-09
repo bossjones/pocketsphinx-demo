@@ -3,13 +3,13 @@ Talk: Demo to explain how to do TTS w/ python, pocketsphinx and Gstreamer.
 
 ## Requirements ( OSX )
 - Homebrew
-- https://github.com/bossjones/homebrew-scarlett-deps
-- Gstreamer
-- PyGobject
-- GLib
-- GTK
-- Cmusphinxbase
-- Pocketsphinx
+- [bossjones/homebrew-scarlett-deps](https://github.com/bossjones/homebrew-scarlett-deps) - Custom homebrew tap w/ pocketsphinx configured to compile against python]
+- `Gstreamer aka GST ` - GStreamer is a pipeline-based multimedia framework that links together a wide variety of media processing systems to complete complex workflows.
+- `GLib` - GLib provides the core application building blocks for libraries and applications written in C. It provides the core object system used in GNOME, the main loop implementation, and a large set of utility functions for strings and common data structures.
+- `GTK` - GTK+, or the GIMP Toolkit, is a multi-platform toolkit for creating graphical user interfaces.
+- `PyGobject` - PyGObject is a Python package which provides bindings for GObject based libraries such as GTK+, GStreamer, WebKitGTK+, GLib, GIO and many more.
+- `Cmusphinxbase` - This package contains the basic libraries shared by the CMU Sphinx trainer and all the Sphinx decoders (Sphinx-II, Sphinx-III, and PocketSphinx), as well as some common utilities for manipulating acoustic feature and audio files.
+- `Pocketsphinx` - PocketSphinx is a lightweight speech recognition engine, specifically tuned for handheld and mobile devices, though it works equally well on the desktop
 - Python 3.7.0 ( Version we tested on )
 
 ## Setup your development environment ( OSX )
@@ -86,13 +86,11 @@ HELLO
 THANK YOU
 ```
 
-Now update the language model and dictonary by using the lmtool-cli script commited to this repo.
+Now update the language model and dictonary by using the lmtool-cli script commited to this repo. This script does a `POST` request to `http://www.speech.cs.cmu.edu/tools/lmtool-new.html` using the data in `demo-corpus.txt`, then downloads the newly generated `.dic` and `.lm` files into the `lang` folder.
 
 ```
 make update-corpus
 ```
-
-This script does a POST request to `http://www.speech.cs.cmu.edu/tools/lmtool-new.html` using the data in `demo-corpus.txt`, then downloads the newly generated `.dic` and `.lm` files into the `lang` folder.
 
 Now you're ready to run the demo!
 
