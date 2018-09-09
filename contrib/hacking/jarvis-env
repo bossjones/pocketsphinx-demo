@@ -16,9 +16,10 @@ export LOCAL_ENVPATH=$(realpath $PS_DEMO_REPO_DIR/..)
 
 
 # NOTE: These values are needed for the python, pocketsphinx, and gstreamer bindings to find each other. They will be needed if you want to install pygobject into a virtualenv environment for example, since it needs to look at c headers to build correctly.
-export LDFLAGS="-L/usr/local/opt/libffi/lib"
+export LDFLAGS="-L/usr/local/opt/libffi/lib -L/usr/local/opt/openssl/lib"
 export LD_LIBRARY_PATH=/usr/local/lib
-export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/local/opt/libffi/lib/pkgconfig"
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$(brew --prefix libffi)/lib/pkgconfig:$(brew --prefix cairo)/lib/pkgconfig"
+export CFLAGS="-I/usr/local/opt/openssl/include"
 
 export PATH="$LOCAL_ENVPATH/bin/:$PATH"
 
