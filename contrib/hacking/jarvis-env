@@ -14,6 +14,8 @@ SCRIPT_DIR=$(dirname $(realpath $SCRIPT))
 export PS_DEMO_REPO_DIR=$(realpath $SCRIPT_DIR/..)
 export LOCAL_ENVPATH=$(realpath $PS_DEMO_REPO_DIR/..)
 
+
+# NOTE: These values are needed for the python, pocketsphinx, and gstreamer bindings to find each other. They will be needed if you want to install pygobject into a virtualenv environment for example, since it needs to look at c headers to build correctly.
 export LDFLAGS="-L/usr/local/opt/libffi/lib"
 export LD_LIBRARY_PATH=/usr/local/lib
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:/usr/local/opt/libffi/lib/pkgconfig"

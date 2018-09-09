@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# Runs against http://www.speech.cs.cmu.edu/tools/lmtool-new.html
+
 import argparse
 import os
 import re

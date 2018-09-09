@@ -106,3 +106,6 @@ run-consoledemo:
 
 update-corpus:
 	python contrib/scripts/lmtool-cli
+
+check:
+	python ./check.py
