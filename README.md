@@ -143,6 +143,7 @@ Taken directly from: https://medium.com/@joshdotai/16-voice-control-terms-you-ne
 
 | Term          | Definition   |
 | ------------- |:-------------|
+|n-gram|In the fields of computational linguistics and probability, an n-gram is a contiguous sequence of n items from a given sample of text or speech.|
 |directed dialogue| An approach to speech application design that prompts users to say specific phrases. Contrast with natural language.|
 |grammar| A file that contains a list of words and phrases to be recognized by a speech application. Grammars may also contain bits of programming logic to aid the application. All of the active grammar words make up the vocabulary. See also ABNF, SRGS, and grXML.|
 |Far-Field|Microphones — Personal computing devices have had microphones for a long time, but they don’t work well from far away. Far-field microphones, on the other hand, are an array of mics that utilize their location in space to amplify and reduce signals. This makes it possible to speak from across the room in a “hands-free” environment. By suppressing certain surrounding noises in the environment, these microphones utilize algorithms to help deliver a clear and easily understandable signal. The magical far-field voice experience is enhanced by other technologies, defined below, which include barge-in, beam forming, noise reduction, acoustic cancellation, and automatic speech recognition. Because this array utilizes the distance between microphones in its calculations, it’s hard to make these devices smaller than a minimum threshold.|
