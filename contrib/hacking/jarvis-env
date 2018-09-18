@@ -13,6 +13,9 @@ SCRIPT=${BASH_SOURCE[0]:-$0}
 SCRIPT_DIR=$(dirname $(realpath $SCRIPT))
 export PS_DEMO_REPO_DIR=$(realpath $SCRIPT_DIR/..)
 export LOCAL_ENVPATH=$(realpath $PS_DEMO_REPO_DIR/..)
+export PS_DIC="${LOCAL_ENVPATH}/speech/lang/dic/demo-dictonary.dic"
+export PS_LM="${LOCAL_ENVPATH}/speech/lang/lm/demo-langmodel.lm"
+
 
 
 # NOTE: These values are needed for the python, pocketsphinx, and gstreamer bindings to find each other. They will be needed if you want to install pygobject into a virtualenv environment for example, since it needs to look at c headers to build correctly.
@@ -36,6 +39,8 @@ echo '              \____/_/    \_\_|  \_\  \/   |_____|_____/            '
 echo "===================================================================="
 echo "PS_DEMO_REPO_DIR = ${PS_DEMO_REPO_DIR}"
 echo "LOCAL_ENVPATH = ${LOCAL_ENVPATH}"
+echo "PS_DIC = ${PS_DIC}"
+echo "PS_LM = ${PS_LM}"
 echo "LDFLAGS = ${LDFLAGS}"
 echo "LD_LIBRARY_PATH = ${LD_LIBRARY_PATH}"
 echo "PKG_CONFIG_PATH = ${PKG_CONFIG_PATH}"
