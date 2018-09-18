@@ -172,3 +172,9 @@ The top reasons for a bad accuracy are:
 - The mismatch of the langauge model. You can create your own language model to match the vocabulary you are trying to decode.
 
 - The mismatch in the dictionary and the pronuncation of the words. In that case some work must be done in the phonetic dictionary.
+
+# Cool Gstreamer Pipeline examples
+
+```
+gst-launch-1.0 -v videotestsrc pattern=snow ! video/x-raw,width=1280,height=720 ! autovideosink
+```
