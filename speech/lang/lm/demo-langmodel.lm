@@ -1,4 +1,4 @@
-Language model created by QuickLM on Sun Sep  9 12:58:26 EDT 2018
+Language model created by QuickLM on Tue Sep 18 13:22:08 EDT 2018
 Copyright (c) 1996-2010 Carnegie Mellon University and Alexander I. Rudnicky
 
 The model is in standard ARPA format, designed by Doug Paul while he was at MITRE.
@@ -7,41 +7,79 @@ The code that was used to produce this language model is available in Open Sourc
 Please visit http://www.speech.cs.cmu.edu/tools/ for more information
 
 The (fixed) discount mass is 0.5. The backoffs are computed using the ratio method.
-This model based on a corpus of 4 sentences and 8 words
+This model based on a corpus of 9 sentences and 19 words
 
 \data\
-ngram 1=8
-ngram 2=10
-ngram 3=6
+ngram 1=19
+ngram 2=26
+ngram 3=17
 
 \1-grams:
--0.8451 </s> -0.3010
--0.8451 <s> -0.2341
--1.4472 HELLO -0.2341
--1.4472 IRON -0.2852
--1.4472 JARVIS -0.2341
--1.4472 MAN -0.2341
--1.4472 THANK -0.2852
--1.4472 YOU -0.2341
+-0.8909 </s> -0.3010
+-0.8909 <s> -0.2413
+-1.8451 DOG -0.2413
+-1.8451 GET -0.2948
+-1.8451 HELLO -0.2413
+-1.8451 INTO -0.2948
+-1.8451 IRON -0.2948
+-1.8451 JARVIS -0.2413
+-1.8451 MAN -0.2413
+-1.8451 PLAY -0.2948
+-1.8451 RARE -0.2413
+-1.8451 THANK -0.2948
+-1.8451 THE -0.2948
+-1.8451 THIS -0.2413
+-1.8451 VERY -0.2948
+-1.8451 WAVY -0.2413
+-1.8451 WITH -0.2948
+-1.8451 YOU -0.2413
+-1.8451 ZEUS -0.2413
 
 \2-grams:
--0.9031 <s> HELLO 0.0000
--0.9031 <s> IRON 0.0000
--0.9031 <s> JARVIS 0.0000
--0.9031 <s> THANK 0.0000
+-1.2553 <s> GET 0.0000
+-1.2553 <s> HELLO 0.0000
+-1.2553 <s> IRON 0.0000
+-1.2553 <s> JARVIS 0.0000
+-1.2553 <s> PLAY 0.0000
+-1.2553 <s> THANK 0.0000
+-1.2553 <s> VERY 0.0000
+-1.2553 <s> WAVY 0.0000
+-1.2553 <s> ZEUS 0.0000
+-0.3010 DOG </s> -0.3010
+-0.3010 GET INTO 0.0000
 -0.3010 HELLO </s> -0.3010
+-0.3010 INTO THIS 0.0000
 -0.3010 IRON MAN 0.0000
 -0.3010 JARVIS </s> -0.3010
 -0.3010 MAN </s> -0.3010
+-0.3010 PLAY WITH 0.0000
+-0.3010 RARE </s> -0.3010
 -0.3010 THANK YOU 0.0000
+-0.3010 THE DOG 0.0000
+-0.3010 THIS </s> -0.3010
+-0.3010 VERY RARE 0.0000
+-0.3010 WAVY </s> -0.3010
+-0.3010 WITH THE 0.0000
 -0.3010 YOU </s> -0.3010
+-0.3010 ZEUS </s> -0.3010
 
 \3-grams:
+-0.3010 <s> GET INTO
 -0.3010 <s> HELLO </s>
 -0.3010 <s> IRON MAN
 -0.3010 <s> JARVIS </s>
+-0.3010 <s> PLAY WITH
 -0.3010 <s> THANK YOU
+-0.3010 <s> VERY RARE
+-0.3010 <s> WAVY </s>
+-0.3010 <s> ZEUS </s>
+-0.3010 GET INTO THIS
+-0.3010 INTO THIS </s>
 -0.3010 IRON MAN </s>
+-0.3010 PLAY WITH THE
 -0.3010 THANK YOU </s>
+-0.3010 THE DOG </s>
+-0.3010 VERY RARE </s>
+-0.3010 WITH THE DOG
 
 \end\
